@@ -1,47 +1,49 @@
 <template>
-  <div class="container">
-    <h2 class="mb-10">HOT & NEW</h2>
-    <div class="cardWrap">
-      <div class="card" v-for="(item, i) in data" :key="i">
-        <div class="imgWrap">
-          <img v-bind:src="`./images/${item.img}`" :alt="`${item.img}`" />
-          <div class="hot" v-if="item.hoticon">HOT</div>
-        </div>
-        <div class="cardBody">
-          <h4>{{ item.title }}</h4>
-          <p>🍿 {{ item.num }}</p>
-          <p>대여: {{ item.won }} ⓒ</p>
-          <p>
-            👍 {{ item.like }}
-            <button v-on:click="increaseLike(i)">클릭</button>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <NavbarView />
+  <ModalView
+    :data="data"
+    :isModal="isModal"
+    :num="selectedNum"
+    @closeModal="isModal = false"
+  />
+  <CardView :data="data" @openModal="isModal = true" />
 </template>
-
 <script>
 import mdata from "./assets/mdata";
+import NavbarView from "./components/NavbarView.vue";
+import ModalView from "./components/ModalView.vue";
+import CardView from "./components/CardView.vue";
 
 export default {
   name: "appView",
   data() {
     return {
       data: mdata,
-      title: "test",
+      isModal: false,
+      selectedNum: 0,
     };
   },
   methods: {
     increaseLike(i) {
       this.data[i].like += 1;
-      this.title = "no";
     },
+    modalOpen(num) {
+      this.isModal = true;
+      this.selectedNum = num;
+    },
+    closeM() {
+      this.isModal = false;
+    },
+  },
+  components: {
+    NavbarView: NavbarView,
+    ModalView: ModalView,
+    CardView: CardView,
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $radius: 5px;
 .container {
   width: 1000px;
@@ -62,6 +64,7 @@ $radius: 5px;
   gap: 10px;
   .card {
     width: calc((100% - 40px) / 5);
+
     @media screen and (max-width: 790px) {
       width: calc((100% - 20px) / 2);
     }
@@ -95,8 +98,25 @@ $radius: 5px;
       }
     }
   }
-}
-.mb10 {
-  margin-bottom: 10px !important;
+  .mb-10 {
+    margin-bottom: 10px !important;
+  }
+
+  .btn {
+    background: pink;
+    border-radius: $radius;
+    padding: 5px 16px;
+    text-align: center;
+    color: white;
+    border: 0 none;
+    display: block;
+    width: 100%;
+    &.btn-primary {
+      background-color: skyblue;
+    }
+    &.btn-info {
+      background-color: greenyellow;
+    }
+  }
 }
 </style>
