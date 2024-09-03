@@ -1,0 +1,51 @@
+const mdata = [
+  {
+    title: "탈주",
+    num: "8.1",
+    won: "11,000",
+    img: "Escape.jpg",
+    like: 0,
+    hoticon: true,
+  },
+  {
+    title: "악은 존재하지 않는다",
+    num: "8.0",
+    won: "10,890",
+    img: "evil.jpg",
+    like: 0,
+    hoticon: false,
+  },
+  {
+    title: "파묘",
+    num: "7.8",
+    won: "9,900",
+    img: "dead.jpg",
+    like: 0,
+    hoticon: false,
+  },
+  {
+    title: "탈주",
+    num: "8.1",
+    won: "11,000",
+    img: "Escape.jpg",
+    like: 0,
+    hoticon: true,
+  },
+  {
+    title: "악은 존재하지 않는다",
+    num: "8.0",
+    won: "10,890",
+    img: "evil.jpg",
+    like: 0,
+    hoticon: false,
+  },
+  {
+    title: "파묘",
+    num: "7.8",
+    won: "9,900",
+    img: "dead.jpg",
+    like: 0,
+    hoticon: false,
+  },
+];
+export default mdata;
