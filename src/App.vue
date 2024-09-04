@@ -1,18 +1,24 @@
 <template>
   <NavbarView />
+  <SearchBarView :data="data_temp" @searchMovie="searchMovie" />
+  <div class="container">
+    <button @click="showAllview">전체보기</button>
+  </div>
+  <CardView :data="data_temp" @openModal="modalOpen" />
   <ModalView
-    :data="data"
+    :data="data_temp"
     :isModal="isModal"
-    :num="selectedNum"
+    :num="num"
+    :id="id"
     @closeModal="isModal = false"
   />
-  <CardView :data="data" @openModal="isModal = true" />
 </template>
 <script>
 import mdata from "./assets/mdata";
 import NavbarView from "./components/NavbarView.vue";
 import ModalView from "./components/ModalView.vue";
 import CardView from "./components/CardView.vue";
+import SearchBarView from "./components/SearchBarView.vue";
 
 export default {
   name: "appView",
@@ -20,25 +26,36 @@ export default {
     return {
       data: mdata,
       isModal: false,
-      selectedNum: 0,
+      num: 0,
+      id: 0,
+      data_temp: [...mdata],
     };
   },
   methods: {
-    increaseLike(i) {
-      this.data[i].like += 1;
-    },
     modalOpen(num) {
+      console.log("숫자" + num);
       this.isModal = true;
-      this.selectedNum = num;
+      this.num = num;
     },
-    closeM() {
+
+    closeModal() {
       this.isModal = false;
+    },
+    searchMovie(title) {
+      console.log("영화이름은" + title);
+      this.data_temp = this.data.filter((movie) => {
+        return movie.title.includes(title);
+      });
+    },
+    showAllview() {
+      this.data_temp = [...this.data];
     },
   },
   components: {
     NavbarView: NavbarView,
     ModalView: ModalView,
     CardView: CardView,
+    SearchBarView: SearchBarView,
   },
 };
 </script>

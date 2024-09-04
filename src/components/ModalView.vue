@@ -6,7 +6,9 @@
       <p class="mb-10">
         {{ data[num].detail }}
       </p>
-      <button class="btn btn-primary" v-on:click="$emit('closeModal')">닫기</button>
+      <button class="btn btn-primary" v-on:click="$emit('closeModal')">
+        닫기
+      </button>
     </div>
   </div>
 </template>
@@ -18,7 +20,9 @@ export default {
     data: Array,
     isModal: Boolean,
     num: Number,
+    id: Number,
   },
+  methods: {},
 };
 </script>
 
@@ -34,7 +38,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 999;
 
   .inner {
     background: #fff;

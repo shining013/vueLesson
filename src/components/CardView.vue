@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="mb-10">HOT & NEW</h2>
     <div class="cardWrap">
-      <div class="card" v-for="(item, i) in data" :key="i">
+      <div class="card" v-for="(item, i) in data" :key="data[i]">
         <div class="imgWrap">
           <img v-bind:src="`./images/${item.img}`" :alt="`${item.img}`" />
           <div class="hot" v-if="item.hoticon">HOT</div>
