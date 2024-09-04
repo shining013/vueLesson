@@ -31,13 +31,13 @@ export default {
   watch: {
     inputText(name) {
       console.log("watch" + name);
-      // const findName = this.data.filter((movie) => {
-      //   return movie.title.includes(name);
-      // });
-      // console.log(findName.length);
-      // if (findName.length == 0) {
-      //   alert("영화 자료가 없습니다.");
-      // }
+      const findName = this.data.filter((movie) => {
+        return movie.title.includes(name);
+      });
+      console.log(findName.length);
+      if (findName.length == 0) {
+        alert("영화 자료가 없습니다.");
+      }
     },
   },
 };
